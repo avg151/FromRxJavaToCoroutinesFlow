@@ -1,6 +1,8 @@
 package com.example.fromrxjavatocoroutinesflow.flow
 
-import androidx.lifecycle.ViewModel
+import androidx.appcompat.widget.SearchView
+import com.example.fromrxjavatocoroutinesflow.common.CommonViewModel
 
-class ViewModelFlow : ViewModel() {
+class ViewModelFlow(searchView: SearchView) : CommonViewModel() {
+
 }
