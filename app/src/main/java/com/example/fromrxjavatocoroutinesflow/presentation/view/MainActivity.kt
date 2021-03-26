@@ -1,7 +1,8 @@
-package com.example.fromrxjavatocoroutinesflow
+package com.example.fromrxjavatocoroutinesflow.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.fromrxjavatocoroutinesflow.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,12 +1,13 @@
-package com.example.fromrxjavatocoroutinesflow
+package com.example.fromrxjavatocoroutinesflow.presentation.view
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import com.example.fromrxjavatocoroutinesflow.flow.MainFragmentFlow
-import com.example.fromrxjavatocoroutinesflow.rx.MainFragmentRx
+import com.example.fromrxjavatocoroutinesflow.R
+import com.example.fromrxjavatocoroutinesflow.presentation.view.flow.MainFragmentFlow
+import com.example.fromrxjavatocoroutinesflow.presentation.view.rx.MainFragmentRx
 
 class SelectionFragment : Fragment(R.layout.fragment_selection) {
 
