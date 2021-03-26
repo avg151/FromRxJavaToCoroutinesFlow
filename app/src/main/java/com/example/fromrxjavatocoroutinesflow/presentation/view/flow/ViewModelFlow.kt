@@ -20,9 +20,9 @@ class ViewModelFlow(
                 .getQueryTextChangeStateFlow()
                 .debounce(TIMEOUT)
                 .distinctUntilChanged()
-                .map { text -> text.toLowerCase(Locale.ROOT).trim() }
-                .filter { text -> text.isNotBlank() }
-                .collect { result -> getData(result) }
+                .map {  it.toLowerCase(Locale.ROOT).trim() }
+                .filter { it.isNotBlank() }
+                .collect {  getData(it) }
         }
     }
 
@@ -33,12 +33,12 @@ class ViewModelFlow(
                 if (newText != null) {
                     query.value = newText
                 }
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 query.value = newText
-                return true
+                return false
             }
         })
         return query

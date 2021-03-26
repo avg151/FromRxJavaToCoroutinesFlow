@@ -12,8 +12,7 @@ import kotlinx.coroutines.FlowPreview
 class ViewModelFactory(
     private val searchView: SearchView,
     private val getDataUseCase: GetDataUseCase
-) :
-    ViewModelProvider.NewInstanceFactory() {
+) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when (modelClass) {
@@ -21,7 +20,5 @@ class ViewModelFactory(
             ViewModelFlow::class.java -> ViewModelFlow(searchView, getDataUseCase) as T
             else -> throw Exception("Unsupported viewModel class exception")
         }
-
     }
-
 }

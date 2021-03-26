@@ -19,8 +19,8 @@ class ViewModelRx(
         Observable.create(observableOnSubscribe(searchView))
             .debounce(TIMEOUT, TimeUnit.MILLISECONDS)
             .distinctUntilChanged()
-            .map { text -> text.toLowerCase(Locale.ROOT).trim() }
-            .filter { text -> text.isNotBlank() }
+            .map { it.toLowerCase(Locale.ROOT).trim() }
+            .filter { it.isNotBlank() }
             .subscribe { getData(it) }
     }
 

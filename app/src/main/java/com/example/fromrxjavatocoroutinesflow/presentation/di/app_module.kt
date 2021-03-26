@@ -4,11 +4,8 @@ import com.example.fromrxjavatocoroutinesflow.data.repository.DataRepositoryImpl
 import com.example.fromrxjavatocoroutinesflow.data.service.DataService
 import com.example.fromrxjavatocoroutinesflow.domain.repository.DataRepository
 import com.example.fromrxjavatocoroutinesflow.domain.usecase.GetDataUseCase
-import com.example.fromrxjavatocoroutinesflow.presentation.view.flow.ViewModelFlow
-import com.example.fromrxjavatocoroutinesflow.presentation.view.rx.ViewModelRx
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -38,17 +35,16 @@ fun createOkHttpClient(): OkHttpClient {
 }
 
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
-    val retrofit = Retrofit.Builder()
+    return Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    return retrofit.create(T::class.java)
+        .create(T::class.java)
 }
 
 
 private const val BASE_URL = "http://universities.hipolabs.com/"
 private const val OKHTTP_INSTANCE = "OkHttp"
 private const val API = "Api"
-private const val GET_DATA_USECASE = "getDataUseCase"
 private const val REMOTE_NAME = "remote"
