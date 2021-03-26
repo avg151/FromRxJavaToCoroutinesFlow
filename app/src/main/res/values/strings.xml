@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FromRxJavaToCoroutinesFlow</string>
+
+    <string name="empty_result">Empty result</string>
 </resources>

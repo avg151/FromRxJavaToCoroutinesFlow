@@ -28,7 +28,7 @@ class DataRepositoryImpl constructor(private val dataService: DataService) : Dat
     }
 
     private fun convert(body: List<DataResponse>): List<SuccessDataModel> {
-        return body.map { SuccessDataModel(it.name) }.take(50)
+        return body.map { SuccessDataModel(it.name) }.take(10)
     }
 
 }
