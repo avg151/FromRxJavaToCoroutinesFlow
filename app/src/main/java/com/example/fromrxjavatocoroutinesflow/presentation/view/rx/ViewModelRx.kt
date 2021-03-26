@@ -5,7 +5,6 @@ import androidx.appcompat.widget.SearchView
 import com.example.fromrxjavatocoroutinesflow.domain.usecase.GetDataUseCase
 import com.example.fromrxjavatocoroutinesflow.presentation.view.common.CommonViewModel
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -18,30 +17,26 @@ class ViewModelRx(
 
     init {
         Observable.create(observableOnSubscribe(searchView))
-            .map { text -> text.toLowerCase(Locale.ROOT).trim() }
             .debounce(TIMEOUT, TimeUnit.MILLISECONDS)
             .distinctUntilChanged()
+            .map { text -> text.toLowerCase(Locale.ROOT).trim() }
             .filter { text -> text.isNotBlank() }
-            .map { getData(it) }
-            .subscribe()
+            .subscribe { getData(it) }
     }
 
     private fun observableOnSubscribe(view: SearchView) =
         ObservableOnSubscribe<String> { subscriber ->
-            view.setOnQueryTextListener(onQueryTextListener(subscriber))
-        }
+            view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let { subscriber.onNext(it) }
+                    return false
+                }
 
-    private fun onQueryTextListener(subscriber: ObservableEmitter<String>) =
-        object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let { subscriber.onNext(it) }
-                return false
-            }
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { subscriber.onNext(it) }
-                return false
-            }
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let { subscriber.onNext(it) }
+                    return false
+                }
+            })
         }
 
 }

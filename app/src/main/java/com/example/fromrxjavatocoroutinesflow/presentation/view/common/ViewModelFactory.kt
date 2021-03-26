@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.fromrxjavatocoroutinesflow.domain.usecase.GetDataUseCase
 import com.example.fromrxjavatocoroutinesflow.presentation.view.flow.ViewModelFlow
 import com.example.fromrxjavatocoroutinesflow.presentation.view.rx.ViewModelRx
+import kotlinx.coroutines.FlowPreview
 
+@FlowPreview
 class ViewModelFactory(
     private val searchView: SearchView,
     private val getDataUseCase: GetDataUseCase
